@@ -1,0 +1,20 @@
+Ejercicio 1: brida circular paramétrica. El script y su verificador están probados aquí: los 5 tests pasan, y siguen pasando al cambiar el diámetro de los agujeros (comprobado con Ø13). Abre brida.step en SolidWorks para ver el sólido.
+
+Para ejecutarlo en tu PC
+
+pip install cadquery pytest
+python brida.py
+pytest -v test_brida.py
+
+Cómo leerlo
+
+brida.py equivale a tu hoja de parámetros más el árbol de operaciones: plano XY, dos círculos, extrusión en +Z, plano sobre la cara superior, matriz polar y taladros pasantes.
+test_brida.py es el verificador: comprueba volumen contra el cálculo a mano, caja envolvente, número de caras cilíndricas y que los agujeros estén sobre el PCD.
+
+Lo que te toca hacer a ti para que la carta sea cierta
+
+Cambia N_AGUJ a 6 y PCD a 95, y vuelve a ejecutar los tests. Tienen que seguir pasando sin tocar el verificador.
+Añade un chaflán de 1 mm en la arista exterior superior (.edges(">Z").chamfer(1), aplicado solo al contorno exterior). El test de volumen fallará; corrígelo restando el volumen del anillo triangular del chaflán.
+Rehaz en CadQuery una pieza tuya sencilla con su propio test.
+
+Cuando hayas hecho el punto 2, pásamelo y lo reviso.
